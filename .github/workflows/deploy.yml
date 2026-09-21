@@ -32,17 +32,17 @@ jobs:
       - name: Install MyST
         run: npm install --global mystmd@1.9.0
 
-      - name: Build 2025 lecture notes
-        working-directory: 2025
+      - name: Build 2025 Freshman Seminar II
+        working-directory: 2025/FreshmanSeminarII
         env:
-          BASE_URL: /${{ github.event.repository.name }}/2025
+          BASE_URL: /${{ github.event.repository.name }}/2025/FreshmanSeminarII
         run: myst build --html --ci
 
       - name: Assemble archive site
         run: |
-          mkdir -p public/2025
+          mkdir -p public/2025/FreshmanSeminarII
           cp index.html public/index.html
-          cp -R 2025/_build/html/. public/2025/
+          cp -R 2025/FreshmanSeminarII/_build/html/. public/2025/FreshmanSeminarII/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3
