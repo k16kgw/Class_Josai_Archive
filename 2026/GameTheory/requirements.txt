@@ -1,0 +1,7 @@
+# To execute the code in our notebook
+matplotlib
+numpy
+nashpy
+
+# To interactively browser Jupyter content with MyST
+jupyterlab_myst

@@ -1,0 +1,370 @@
+% !TEX program = lualatex
+\documentclass[10pt,a4paper]{ltjsarticle}
+
+\usepackage[top=15mm,bottom=10mm,left=20mm,right=14mm,footskip=3mm]{geometry}
+\usepackage{amsmath,amssymb,array}
+\usepackage{diagbox}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.15em}
+\setlength{\abovedisplayskip}{0.25em}
+\setlength{\belowdisplayskip}{0.25em}
+\setlength{\fboxsep}{1.5mm}
+\renewcommand{\arraystretch}{1.25}
+\setlist[enumerate]{label=(\arabic*),leftmargin=*,itemsep=0.05em,topsep=0.1em}
+
+% 解答例の表示切り替え：0=OFF（問題用），1=ON（解答例入り）
+\providecommand{\showanswers}{0}
+
+\newcommand{\points}[1]{\hfill{\small（#1点）}}
+\newcommand{\question}[2]{%
+  \par\vspace{0.45em}
+  {\large\bfseries #1}\points{#2}\par\vspace{0.15em}
+}
+\newcommand{\answerbox}[2]{%
+  \par\vspace{0.25em}
+  \noindent\fbox{%
+    \begin{minipage}[t][#1][t]{0.975\linewidth}
+      {\small\textbf{解答欄}}
+      \ifnum\showanswers=1
+        \par\vspace{0.2em}
+        {\color{red}#2}
+      \fi
+    \end{minipage}%
+  }%
+  \par\vspace{0.25em}
+}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE 2026年度 前期 ゲーム理論 期末試験}\\[-0.2em]
+  {担当教員：香川渓一郎}\\[-0.1em]
+  {試験日時：2026年7月27日（月）4限 15:20--16:20}
+\end{center}
+
+\begin{tabular}{|p{0.35\linewidth}|p{0.35\linewidth}|p{0.20\linewidth}|}
+  \hline
+  学籍番号 & 氏名 & 得点（30点満点） \\
+  \hline
+   & & \\
+   & & \\
+  \hline
+\end{tabular}
+
+\vspace{0.3em}
+問題は全6問5ページある．落丁があった場合は直ちに試験官に知らせること．\\
+注1：誤答であっても途中式や考え方によって加点することがある．\\
+注2：解答欄が足りない場合は裏面に解答しても良い．
+
+\question{第1問：ナッシュ交渉解}{5}
+不一致点を $d=(30,10)$ とする．
+パレート最適な境界が
+\[
+  u_2=-2u_1+120
+\]
+で与えられている交渉問題を考える．
+\begin{enumerate}
+  \item ナッシュ積を $u_1$ だけの式で表せ．
+  \item ナッシュ積を最大にする $u_1^\ast$ を求めよ．
+  \item ナッシュ交渉解 $(u_1^\ast, u_2^\ast)$ を求めよ．
+\end{enumerate}
+\answerbox{156mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item 不一致点は $(30,10)$ なので，ナッシュ積は
+  \[
+    (u_1-30)(u_2-10)
+  \]
+  である．$u_2=-2u_1+120$ を代入すると，
+  \[
+    P(u_1)=(u_1-30)(110-2u_1)
+  \]
+  である．
+  \item 微分すると，
+  \[
+    \frac{dP}{du_1}=(110-2u_1)-2(u_1-30)=170-4u_1
+  \]
+  である．$170-4u_1=0$ より，
+  \[
+    u_1^\ast=\frac{85}{2}
+  \]
+  である．また，$\frac{d^2P}{du_1^2}=-4<0$ なので，この点でナッシュ積は最大になる．
+  \item $u_1^\ast=85/2$ を代入すると，
+  \[
+    u_2^\ast=-2\cdot\frac{85}{2}+120=35
+  \]
+  である．したがって，ナッシュ交渉解は
+  \[
+    (u_1^\ast,u_2^\ast)=\left(\frac{85}{2},35\right)
+  \]
+  である．
+\end{enumerate}
+}
+
+\newpage
+
+\question{第2問：後ろ向き帰納法}{4}
+\begin{minipage}[t]{0.58\linewidth}
+\vspace{0pt}
+右のレディファーストの展開型ゲームを考える．
+女性が先に水族館または博物館を選び，その後に男性が水族館または博物館を選ぶ．
+ただし，利得は$(\text{女性の利得}, \text{男性の利得})$のように表している．
+\begin{enumerate}
+  \item 女性が水族館を選んだ場合，男性は何を選ぶか．
+  \item 女性が博物館を選んだ場合，男性は何を選ぶか．
+  \item それを予想した女性は何を選ぶか．
+  \item 以上のようにして行った後ろ向き帰納法によって選ばれる戦略の組とその利得を答えよ．
+\end{enumerate}
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.38\linewidth}
+\vspace{0pt}
+\centering
+\begin{tabular}{c|cc}
+\diagbox[width=22mm]{女性}{男性} & \text{水族館} & \text{博物館} \\ \hline
+\text{水族館} & $(2,1)$ & $(0,0)$ \\
+\text{博物館} & $(0,0)$ & $(1,2)$
+\end{tabular}
+\end{minipage}
+\answerbox{64mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item 女性が水族館を選んだ場合，男性は水族館なら利得1，博物館なら利得0なので，水族館を選ぶ．
+  \item 女性が博物館を選んだ場合，男性は水族館なら利得0，博物館なら利得2なので，博物館を選ぶ．
+  \item 女性は，水族館を選べば利得2，博物館を選べば利得1になると予想する．したがって，水族館を選ぶ．
+  \item 後ろ向き帰納法によって選ばれる戦略の組は，女性が水族館，男性が水族館である．利得は $(2,1)$ である．
+\end{enumerate}
+}
+
+\question{第3問：ベイズの定理による信念の更新}{3}
+ある応募者が高能力タイプ $H$ である事前確率を $0.3$，低能力タイプ $L$ である事前確率を $0.7$ とする．
+高能力タイプが資格 $Q$ を取得する確率と低能力タイプが資格 $Q$ を取得する確率は，条件付き確率を用いて
+\[
+  P(Q\mid H)=0.8,\qquad P(Q\mid L)=0.2
+\]
+であるとする．
+\begin{enumerate}
+  \item 応募者が資格を取得している確率 $P(Q)$ を求めよ．
+  \item ある応募者が資格を取得していることが判明したとき，その応募者が高能力タイプである事後確率 $P(H\mid Q)$ を求めよ．
+  \item 資格の取得の判明によって，高能力タイプである確率は上昇したか，低下したか．理由と共にどちらかを答えよ．
+\end{enumerate}
+\answerbox{80mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item
+  \[
+    P(Q)=P(Q\mid H)P(H)+P(Q\mid L)P(L)
+    =0.8\cdot0.3+0.2\cdot0.7=0.38.
+  \]
+  \item ベイズの定理より，
+  \[
+    P(H\mid Q)
+    =\frac{P(Q\mid H)P(H)}{P(Q)}
+    =\frac{0.8\cdot0.3}{0.38}
+    =\frac{12}{19}.
+  \]
+  \item 事前確率は $0.3$ であり，事後確率は $\frac{12}{19}\simeq0.632$ なので，高能力タイプである確率は上昇した．
+\end{enumerate}
+}
+
+\newpage
+
+\question{第4問：3人対称ゲームのコア}{6}
+3人のプレイヤー $A,B,C$ が同じ役割をもつ協力ゲームを考える．
+1人だけでは価値を生まず，どの2人提携も同じ価値 $a$ を生み，3人全員の提携は価値1を生むとする．
+すなわち，プレイヤー集合を $N=\{A,B,C\}$ とし，特性関数を
+\[
+v(\{A\})=v(\{B\})=v(\{C\})=0,
+\]
+\[
+v(\{A,B\})=v(\{A,C\})=v(\{B,C\})=a,
+\]
+\[
+v(N)=1
+\]
+とする．ただし，$0<a<1$ とする．
+\begin{enumerate}
+  \item コアに含まれる配分 $x=(x_A,x_B,x_C)$ が満たす条件を書け．
+  \item 上の条件から，コアが存在するためには $a\le 2/3$ が必要であることを示せ．
+  \item $a\le 2/3$ のとき，均等配分 $(1/3,1/3,1/3)$ がコアに含まれることを示せ．
+\end{enumerate}
+\answerbox{196mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item コアに含まれる配分は，
+  \[
+    x_A+x_B+x_C=1
+  \]
+  および
+  \[
+    x_A+x_B\ge a,\quad x_A+x_C\ge a,\quad x_B+x_C\ge a,
+  \]
+  \[
+    x_A\ge0,\quad x_B\ge0,\quad x_C\ge0
+  \]
+  を満たす．
+  \item 3つの2人提携の条件を加えると，
+  \[
+    2(x_A+x_B+x_C)\ge 3a
+  \]
+  である．$x_A+x_B+x_C=1$ より，
+  \[
+    2\ge 3a
+  \]
+  が必要である．したがって，$a\le 2/3$ が必要である．
+  \item 均等配分では，任意の2人提携が受け取る利得の合計は
+  \[
+    \frac13+\frac13=\frac23
+  \]
+  である．$a\le 2/3$ なら，すべての2人提携について提携合理性を満たす．また，個人合理性とパレート最適性も満たすので，均等配分はコアに含まれる．
+\end{enumerate}
+}
+
+\newpage
+
+\question{第5問：繰り返し囚人のジレンマ}{6}
+\begin{minipage}[t]{0.58\linewidth}
+\vspace{0pt}
+右のステージゲームを無限回繰り返す囚人のジレンマを考える．
+各期の利得を割引因子 $\delta$ で割り引く．
+両プレイヤーがトリガー戦略を用いるとする．
+すなわち，最初は $C$ を選び，相手が一度でも $D$ を選んだら，それ以降は常に $D$ を選ぶ．
+このとき次の問に答えよ．
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.38\linewidth}
+\vspace{0pt}
+\centering
+\begin{tabular}{c|cc}
+\diagbox[width=14mm]{1}{2} & C & D \\ \hline
+C & $(5,5)$ & $(0,8)$ \\
+D & $(8,0)$ & $(2,2)$
+\end{tabular}
+\end{minipage}
+\begin{enumerate}
+  \item 協力を続ける場合の割引利得和を求めよ．
+  \item 初回だけ裏切る場合の割引利得和を求めよ．
+  \item トリガー戦略によって協力が維持されるための $\delta$ の条件を求めよ．
+  \item 両プレイヤーの割引因子が $\delta=0.8$ のときの割引利得和を求めよ．
+\end{enumerate}
+\answerbox{200mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item 協力を続けると毎期5を得るので，割引利得和は
+  \[
+    5+\delta5+\delta^2 5+\cdots
+    =\frac{5}{1-\delta}
+  \]
+  である．
+  \item 今回だけ裏切ると，今期は8を得る．次期以降は相手がずっと裏切るため，毎期2を得る．したがって，割引利得和は
+  \[
+    8+\delta2+\delta^2 2+\cdots
+    =
+    8+\frac{2\delta}{1-\delta}
+  \]
+  である．
+  \item 協力が維持されるためには，
+  \[
+    \frac{5}{1-\delta}
+    \ge
+    8+\frac{2\delta}{1-\delta}
+  \]
+  が必要である．両辺に $1-\delta>0$ をかけると，
+  \[
+    5\ge 8(1-\delta)+2\delta
+  \]
+  である．よって，
+  \[
+    5\ge 8-6\delta
+  \]
+  なので，
+  \[
+    \delta\ge\frac12
+  \]
+  である．
+  \item $\delta=0.8$ は
+  \[
+    0.8\ge\frac12
+  \]
+  を満たすので，トリガー戦略によって協力が維持される．
+  したがって，均衡経路では両プレイヤーが毎期 $C$ を選び，各期に利得5を得る．
+  よって，各プレイヤーの割引利得和は
+  \[
+    \frac{5}{1-0.8}
+    =
+    25
+  \]
+  である．
+  参考までに，初回だけ裏切る場合の割引利得和は
+  \[
+    8+\frac{2\cdot0.8}{1-0.8}=16
+  \]
+  であり，協力を続ける場合のほうが大きい．
+\end{enumerate}
+}
+
+\newpage
+
+\question{第6問：スタグ・ハントの歴史経路依存性}{6}
+\begin{minipage}[t]{0.58\linewidth}
+\vspace{0pt}
+右の対称ゲームを考える．
+これは2人が協力して鹿を狩るか，各自で野兎（のうさぎ）を狩るかを選ぶ状況を表しており，ジャン＝ジャック・ルソーの物語「鹿狩りの寓話」に因む．
+鹿狩り $S$ は，相手も鹿狩りなら高い利得を得るが，相手が野兎狩りなら失敗する．
+野兎狩り $H$ は，相手の行動にかかわらず確実な利得を得る．\\
+ここで集団内の鹿型 $S$ (Stag) の比率を $x$，野兎型 $H$ (Hare) の比率を $1-x$ とするときに次の問に答えよ．
+\end{minipage}
+\hfill
+\begin{minipage}[t]{0.38\linewidth}
+\vspace{0pt}
+\centering
+\begin{tabular}{c|cc}
+\diagbox[width=22mm]{自分}{相手} & 鹿 $S$ & 野兎 $H$ \\ \hline
+鹿 $S$ & $4$ & $0$ \\
+野兎 $H$ & $3$ & $3$
+\end{tabular}
+\end{minipage}
+\begin{enumerate}
+  \item 鹿型と野兎型の期待適応度 $u_S(x)$，$u_H(x)$ を求めよ．
+  \item レプリケータダイナミクスを書き下し，定常状態 $x^\ast$ をすべて求めよ．
+  \item $0<x^\ast<1$ を満たす内点である1つの定常状態について，安定か不安定かを理由とともに答えよ．
+  \item 初期状態が $x_0=0.6$ の場合の長期状態（最終的に $x$ が収束する値）を答えよ．
+\end{enumerate}
+\answerbox{192mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item 鹿型の期待適応度は
+  \[
+    u_S(x)=4x
+  \]
+  であり，野兎型の期待適応度は
+  \[
+    u_H(x)=3x+3(1-x)=3
+  \]
+  である．
+  \item
+  \[
+    \dot{x}=x(1-x)\{u_S(x)-u_H(x)\}
+    =x(1-x)(4x-3)
+  \]
+  なので，定常状態は
+  \[
+    x=0,\qquad x=\frac34,\qquad x=1
+  \]
+  である．
+  \item 内点の定常状態は $x^\ast=3/4$ である．
+  レプリケータダイナミクスの右辺を $F(x)=x(1-x)(4x-3)$ とおくと，
+  \[
+    F'(x) = -12x^2 + 14x - 3
+  \]
+  であるから，
+  \[
+    F'\left(\frac34\right)=\frac34>0
+  \]
+  なので，内点の定常状態 $x^\ast=3/4$ は不安定である．
+  \item
+  \[
+    0.6<\frac34
+  \]
+  なので，$x_0=0.6$ では長期的に $x=0$ へ向かい，野兎型が定着する．
+\end{enumerate}
+}
+
+\end{document}

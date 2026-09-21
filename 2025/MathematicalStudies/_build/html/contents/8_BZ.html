@@ -1,0 +1,961 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>8. BZ反応のモデル &#8212; Mathematical Studies I・II</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+
+  
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=dfe6caa3a7d634c4db9b" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=03e43079" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=eba8b062" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.8ecb98da25f57f5357bf6f572d296f466b2cfe2517ffebfabe82451661e28f02.css?v=6644e6bb" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'contents/8_BZ';</script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="9. 感染症モデル（SIRモデル）" href="9_SIR_model.html" />
+    <link rel="prev" title="7. 2種競争モデルと双安定性" href="7_bistable.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../intro.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt="Mathematical Studies I・II - Home"/>
+    <script>document.write(`<img src="../_static/logo.png" class="logo__image only-dark" alt="Mathematical Studies I・II - Home"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../intro.html">
+                    数学研究I・II（城西大学）
+                </a>
+            </li>
+        </ul>
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">目次</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="1_mathematical_model.html">1. 数理モデルの導入・演習</a></li>
+<li class="toctree-l1"><a class="reference internal" href="2_physics_examples.html">2. 物理学の事例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="3_biology_examples.html">3. 生物学の事例</a></li>
+<li class="toctree-l1"><a class="reference internal" href="4_variational_principle.html">4. 変分原理と物理モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="5_ordinal_differential_equation.html">5. 常微分方程式と初期値問題</a></li>
+<li class="toctree-l1"><a class="reference internal" href="6_prey_predator_model.html">6. 捕食者・被食者モデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="7_bistable.html">7. 2種競争モデルと双安定性</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">8. BZ反応のモデル</a></li>
+<li class="toctree-l1"><a class="reference internal" href="9_SIR_model.html">9. 感染症モデル（SIRモデル）</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-source-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Source repositories">
+    <i class="fab fa-github"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book" target="_blank"
+   class="btn btn-sm btn-source-repository-button dropdown-item"
+   title="Source repository"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+<span class="btn__text-container">Repository</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li><a href="https://github.com/executablebooks/jupyter-book/issues/new?title=Issue%20on%20page%20%2Fcontents/8_BZ.html&body=Your%20issue%20content%20here." target="_blank"
+   class="btn btn-sm btn-source-issues-button dropdown-item"
+   title="Open an issue"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-lightbulb"></i>
+  </span>
+<span class="btn__text-container">Open issue</span>
+</a>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/contents/8_BZ.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="theme-switch fa-solid fa-sun fa-lg" data-mode="light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg" data-mode="dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"></i>
+  </button>
+`);
+</script>
+
+
+<script>
+document.write(`
+  <button class="btn btn-sm pst-navbar-icon search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+  </button>
+`);
+</script>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>BZ反応のモデル</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bz-belousovzhabotinsky-reaction">8.1. BZ反応（Belousov–Zhabotinsky reaction）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.1.1. 実験動画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1.2. 代表的なモデル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fkn">8.2. FKNモデル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oregonator">8.3. Oregonatorモデル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keenertyson">8.4. Keener–Tysonモデル</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.4.1. 課題</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.5. 応用</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.5.1. 自律振動</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8.5.2. 化学パターン形成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8.5.3. 脳科学・計算科学への応用</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">8.6. まとめ</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="bz">
+<h1><span class="section-number">8. </span>BZ反応のモデル<a class="headerlink" href="#bz" title="Link to this heading">#</a></h1>
+<p>到達目標</p>
+<ul class="simple">
+<li><p>BZ反応に代表されるリミットサイクル振動を理解する．</p></li>
+<li><p>数値シミュレーションを活用して周期解を理解する．</p></li>
+</ul>
+<p>準備</p>
+<ol class="arabic simple">
+<li><p>anacondaを使用し，<span style="color:red">jupyter lab</span>を起動する．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Documents（書類）/mathematical_studies</span></code>フォルダをダブルクリックで開き<code class="docutils literal notranslate"><span class="pre">+</span></code>をクリックして新しいファイルを作成する．</p></li>
+<li><p>ファイル名を<code class="docutils literal notranslate"><span class="pre">8_{学籍番号}_{氏名}.ipynb</span></code>に変更する．例：<code class="docutils literal notranslate"><span class="pre">8_SI25999_香川渓一郎.ipynb</span></code></p></li>
+</ol>
+<section id="bz-belousovzhabotinsky-reaction">
+<h2><span class="section-number">8.1. </span>BZ反応（Belousov–Zhabotinsky reaction）<a class="headerlink" href="#bz-belousovzhabotinsky-reaction" title="Link to this heading">#</a></h2>
+<ul class="simple">
+<li><p>同じ溶液の中にある化学反応が<strong>周期的に色を変え続ける現象</strong>．</p></li>
+<li><p>1950年代に発見される．</p></li>
+<li><p>多くの化学反応は「反応物が減り生成物が増えたら終わる」が，BZ反応は<strong>外部入力なしでも勝手に振動</strong>する．</p></li>
+</ul>
+<section id="id1">
+<h3><span class="section-number">8.1.1. </span>実験動画<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Nrwc8Ojvnxk?si=cKTVk1W7Grgsnzs1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+<p><a class="reference external" href="https://vcpteam.hatenablog.com/entry/2022/07/05/215333">「振動反応　～BZ(ベローゾフ・ジャボチンスキー)反応～」VCPteam’s blog</a></p>
+</section>
+<section id="id2">
+<h3><span class="section-number">8.1.2. </span>代表的なモデル<a class="headerlink" href="#id2" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Field–Körös–Noyes(FKN)モデル</p></li>
+<li><p>オレゴネータ(Oregonator)モデル</p></li>
+<li><p>Keener–Tysonモデル</p></li>
+</ul>
+</section>
+</section>
+<section id="fkn">
+<h2><span class="section-number">8.2. </span>FKNモデル<a class="headerlink" href="#fkn" title="Link to this heading">#</a></h2>
+<p>次の5つの化学成分が重要な役割を果たしている．</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; X = \mathrm{HBrO_2}, 
+\quad Y = \mathrm{Br^{-}},
+\quad Z = \mathrm{Ce^{4+}},
+\\
+&amp; A = \mathrm{BrO_3^{-}},
+\quad P = \mathrm{HOBr},
+\end{split}\]</div>
+<p>これらの間に次の化学反応が生じている．</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+&amp; A + Y \xrightarrow{k_1} X + P,
+\\
+&amp; X + Y \xrightarrow{k_2} 2P,
+\\
+&amp; A + X \xrightarrow{k_3} 2X + 2Z,
+\\
+&amp; 2X \xrightarrow{k_4} A + P,
+\\
+&amp; Z \xrightarrow{k_5} f Y,
+\end{split}\]</div>
+<p>ただし<span class="math notranslate nohighlight">\(k_i\)</span>(<span class="math notranslate nohighlight">\(i=1,\ldots,5\)</span>)は反応速度定数，<span class="math notranslate nohighlight">\(f\)</span>は化学量論因子で<span class="math notranslate nohighlight">\(f=0.5\)</span>とされることが多い．</p>
+</section>
+<section id="oregonator">
+<h2><span class="section-number">8.3. </span>Oregonatorモデル<a class="headerlink" href="#oregonator" title="Link to this heading">#</a></h2>
+<p>FKNモデルを3つの成分に帰着したモデル．
+Fieldらがオレゴン大学で研究していたことから名付けられた．</p>
+<p><span class="math notranslate nohighlight">\(X=\mathrm{HBrO_2}\)</span>，<span class="math notranslate nohighlight">\(Y=\mathrm{Br^{-}}\)</span>，<span class="math notranslate nohighlight">\(Z=\mathrm{Ce^{4+}}\)</span>の3成分に注目し，時刻<span class="math notranslate nohighlight">\(t\)</span>におけるそれぞれの濃度を次のようにおく．</p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(x(t)\)</span>：中間体<span class="math notranslate nohighlight">\(\mathrm{HBrO_2}\)</span>の濃度</p></li>
+<li><p><span class="math notranslate nohighlight">\(y(t)\)</span>：還元剤<span class="math notranslate nohighlight">\(\mathrm{Br^{-}}\)</span>の濃度</p></li>
+<li><p><span class="math notranslate nohighlight">\(z(t)\)</span>：触媒<span class="math notranslate nohighlight">\(\mathrm{Ce^{4+}}\)</span>の濃度</p></li>
+</ul>
+<p>また<span class="math notranslate nohighlight">\(A = \mathrm{BrO_3^{-}}\)</span>はほとんど定数<span class="math notranslate nohighlight">\(a\)</span>であると仮定し，<span class="math notranslate nohighlight">\(X,Y,Z\)</span>の3成分の時間変化を考えると</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\dfrac{dx}{dt} = k_1 ay - k_2 xy + k_3 ax - k_4 x^2,
+\\
+\dfrac{dy}{dt} = -k_1 ay - k_2 xy + f k_5 z,
+\\
+\dfrac{dz}{dt} = 2k_3 ax - k_5 z,
+\end{cases}
+\end{split}\]</div>
+<p>となる．</p>
+<!-- 
+ここでは$z$がほとんど変化しない状況を考え，次の簡略版Oregonatorモデルを扱う．
+
+$$
+\begin{cases}
+\dfrac{dx}{dt} = q y - x y + x(1 - x),
+\\
+\dfrac{dy}{dt} = - q y - x y + f,
+\end{cases}
+$$
+
+ここに
+- $q>0$：反応比
+- $f>0$：供給（定数）
+- 非線形項は$xy$, $x^2$の2つ
+- 適切なパラメタのもとでは，静止せずに閉じた軌道（リミットサイクル）に沿って動く．
+
+## 平衡点の解析
+
+平衡点は$\dfrac{dx}{dt}=\dfrac{dy}{dt}=0$で求まるが，ここでは表式が複雑になるため数値的に求める．
+
+```python
+import mpmath as mp
+q, f = 0.002, 1.1
+
+# f1(x, y) = 0, f2(x, y) = 0 を解きたい
+def f1(x, y):
+    return q*y - x*y + x*(1 - x)
+def f2(x, y):
+    return -q*y - x*y + f
+# 初期値 (x0, y0) = (0.2, 1.0) からニュートン法で解く
+x_star, y_star = mp.findroot((f1, f2), (0.2, 1.0))
+
+print("平衡点: x* =", x_star, ", y* =", y_star)
+```
+ -->
+<!-- 
+```python
+import mpmath as mp
+q, f = 0.002, 1.1
+
+x_star, y_star = mp.findroot(
+    (lambda x, y: q*y - x*y + x*(1-x),
+     lambda x, y: -q*y - x*y + f),
+    (0.2, 1.0)
+)
+print("平衡点: x* =", x_star, ", y* =", y_star)
+```
+ -->
+<!-- 
+この平衡点は近くを初期値とすると
+- 内側からは外へ
+- 外側からは内へ
+と向かい，**ある閉じた軌道に吸い込まれていく**．
+この軌道を<span style="color:red">リミットサイクル</span>と呼ぶ．
+
+## 数値シミュレーション
+
+右辺の実装
+```python
+import numpy as np
+import matplotlib.pyplot as plt
+from matplotlib import rcParams
+rcParams['font.family'] = 'Hiragino Sans'
+
+q = 0.002
+f = 1.1
+
+def oregonator_rhs(x, y):
+    dx = q*y - x*y + x*(1-x)
+    dy = -q*y - x*y + f
+    return dx, dy
+```
+
+
+```python
+def euler_oregonator(f, x0, y0, t):
+    X = np.empty_like(t); Y = np.empty_like(t)
+    X[0], Y[0] = x0, y0
+    h = t[1] - t[0]
+
+    for k in range(len(t) - 1):
+        dx, dy = f(X[k], Y[k])   # 現在値で傾きを評価
+        X[k+1] = X[k] + h * dx   # x を更新
+        Y[k+1] = Y[k] + h * dy   # y を更新
+
+    return X, Y
+```
+
+計算の実施
+```python
+t = np.linspace(0, 200, 10000)  # h が小さめになるように刻みをとる
+x0, y0 = 0.2, 1.2
+X, Y = euler_oregonator(oregonator_rhs, x0, y0, t)
+```
+
+可視化（相平面）
+```python
+plt.figure(figsize=(5,4))
+plt.plot(X, Y, 'b-')
+plt.xlabel("x")
+plt.ylabel("y")
+plt.title("Oregonator (BZ reaction) のリミットサイクル")
+plt.grid(True, alpha=0.3)
+plt.show()
+```
+
+- 内側の軌道は外側に発散
+- 外側の軌道は内側へ収束
+- 最終的に一定の閉じたループへ吸い込まれる：リミットサイクル（limit cycle）
+
+時系列表示
+```python
+plt.figure(figsize=(6,3))
+plt.plot(t, X, label="x(t)")
+plt.plot(t, Y, label="y(t)")
+plt.xlabel("t"); plt.ylabel("濃度")
+plt.legend(); plt.grid(True, alpha=0.3)
+plt.title("BZ反応の濃度振動")
+plt.show()
+```
+
+結果：
+- $x(t)$と$y(t)$は周期的に振動する．
+- 化学反応が時間に関して周期的な挙動を示す現象に相当する．
+
+## リミットサイクルの数学的特徴
+
+- リミットサイクルは
+
+  $$
+  \gamma(t):\mathbb{R}\to\mathbb{R}^2,\quad \gamma(t+T)=\gamma(t)
+  $$
+
+  という周期解で，その軌道の近くにある点が時間とともに**吸い寄せられる**（安定極限周期）．
+- BZ反応は非線形項とフィードバックによって，この構造を内包している．
+
+構造
+- 内側からくる軌道：外へ押される（不安定）
+- 外側からくる軌道：内側へ引っ張られる（安定）
+- 両者の境界として閉曲線（安定なリミットサイクル）が出現
+
+
+```{note}
+**演習1**
+
+Oregonatorモデルを用いて異なる初期値から出発しても同じリミットサイクルに収束することを示せ．
+```
+
+```{note}
+**演習2**
+
+パラメタ$q$と$f$の値によっては安定なリミットサイクルが消滅することがある．パラメタ$q$と$f$を変化させ，安定なリミットサイクルが消滅・出現する様子を調べよ．
+```
+ -->
+</section>
+<section id="keenertyson">
+<h2><span class="section-number">8.4. </span>Keener–Tysonモデル<a class="headerlink" href="#keenertyson" title="Link to this heading">#</a></h2>
+<p>特異摂動と呼ばれる手続きによって変数<span class="math notranslate nohighlight">\(y\)</span>の時間変化が分からないほど遅いとすることで，Oregonatorモデルは次のように簡略化（縮約）することができる．</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+\begin{cases}
+\varepsilon \dfrac{dx}{dt} = fz\dfrac{q-x}{q+x} + x(1-x),
+\\
+\dfrac{dz}{dt} = x - z,
+\end{cases}
+\end{split}\]</div>
+<p>この2変数系について数値シミュレーションによって解のダイナミクスを調べてみる．</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">matplotlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">rcParams</span>
+<span class="n">rcParams</span><span class="p">[</span><span class="s1">&#39;font.family&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Hiragino Sans&#39;</span>
+
+<span class="n">eps</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">q</span> <span class="o">=</span> <span class="mf">0.01</span>
+<span class="n">f</span> <span class="o">=</span> <span class="mf">0.8</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">kt_rhs</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">):</span>
+    <span class="n">dx</span> <span class="o">=</span> <span class="p">(</span><span class="n">f</span><span class="o">*</span><span class="n">z</span><span class="o">*</span><span class="p">(</span><span class="n">q</span><span class="o">-</span><span class="n">x</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">q</span><span class="o">+</span><span class="n">x</span><span class="p">)</span> <span class="o">+</span> <span class="n">x</span><span class="o">*</span><span class="p">(</span><span class="mi">1</span><span class="o">-</span><span class="n">x</span><span class="p">))</span><span class="o">/</span><span class="n">eps</span>
+    <span class="n">dz</span> <span class="o">=</span> <span class="n">x</span> <span class="o">-</span> <span class="n">z</span>
+    <span class="k">return</span> <span class="n">dx</span><span class="p">,</span> <span class="n">dz</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">euler_kt</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">t</span><span class="p">):</span>
+    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">t</span><span class="p">);</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">empty_like</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+    <span class="n">X</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">Z</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">x0</span><span class="p">,</span> <span class="n">z0</span>
+    <span class="n">h</span> <span class="o">=</span> <span class="n">t</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">-</span> <span class="n">t</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">t</span><span class="p">)</span> <span class="o">-</span> <span class="mi">1</span><span class="p">):</span>
+        <span class="n">dx</span><span class="p">,</span> <span class="n">dz</span> <span class="o">=</span> <span class="n">f</span><span class="p">(</span><span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="p">],</span> <span class="n">Z</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>   <span class="c1"># 現在値で傾きを評価</span>
+        <span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">X</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">dx</span>   <span class="c1"># x を更新</span>
+        <span class="n">Z</span><span class="p">[</span><span class="n">k</span><span class="o">+</span><span class="mi">1</span><span class="p">]</span> <span class="o">=</span> <span class="n">Z</span><span class="p">[</span><span class="n">k</span><span class="p">]</span> <span class="o">+</span> <span class="n">h</span> <span class="o">*</span> <span class="n">dz</span>   <span class="c1"># z を更新</span>
+
+    <span class="k">return</span> <span class="n">X</span><span class="p">,</span> <span class="n">Z</span>
+</pre></div>
+</div>
+<p>相図の作成</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">1.2</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mf">0.4</span><span class="p">,</span> <span class="mi">25</span><span class="p">)</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">z</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">kt_rhs</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">)</span>
+
+<span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">quiver</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">V</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="s1">&#39;gray&#39;</span><span class="p">,</span> <span class="n">angles</span><span class="o">=</span><span class="s1">&#39;xy&#39;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s2">&quot;y&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">set_title</span><span class="p">(</span><span class="s2">&quot;KTモデルの相図&quot;</span><span class="p">)</span>
+<span class="n">ax</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;8_kt_phase_eps=</span><span class="si">{</span><span class="n">eps</span><span class="si">}</span><span class="s2">_q=</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">_f=</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>計算の実施と軌道のプロット</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">t</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="mi">1000000</span><span class="p">)</span> <span class="c1"># 分割幅が小さくなるよう注意</span>
+<span class="n">x0</span><span class="p">,</span> <span class="n">z0</span> <span class="o">=</span> <span class="mf">0.2</span><span class="p">,</span> <span class="mf">1.2</span>
+<span class="n">X</span><span class="p">,</span> <span class="n">Z</span> <span class="o">=</span> <span class="n">euler_kt</span><span class="p">(</span><span class="n">kt_rhs</span><span class="p">,</span> <span class="n">x0</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">t</span><span class="p">)</span>
+
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span><span class="mi">4</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="s1">&#39;b-&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span><span class="n">x0</span><span class="p">,</span> <span class="n">z0</span><span class="p">,</span> <span class="n">c</span><span class="o">=</span><span class="s1">&#39;r&#39;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;x&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;z&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Keener–Tysonモデルのリミットサイクル&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;8_kt_xz_orbit_eps=</span><span class="si">{</span><span class="n">eps</span><span class="si">}</span><span class="s2">_q=</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">_f=</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>上記コードを実行すると次のような図が得られる．</p>
+<p><img alt="リミットサイクル" src="../_images/8_kt_xz_orbit_eps%3D0.01_q%3D0.01_f%3D0.8_x0%3D0.2_z0%3D0.2.png" /></p>
+<ul class="simple">
+<li><p><span class="math notranslate nohighlight">\(xz\)</span>平面内で初期値から始まった解の軌道はある一定の閉じたループへ吸い込まれる様子が見られる．</p></li>
+<li><p>このループを<span style="color:red">リミットサイクル</span>(limit cycle)と呼ぶ．</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span style="color:red"><strong>課題1</strong></span></p>
+<p>上記，軌道をプロットするコードで，<code class="docutils literal notranslate"><span class="pre">x0</span></code>，<code class="docutils literal notranslate"><span class="pre">z0</span></code>の値を変えても同じループに吸い込まれることを確認せよ．</p>
+<p>特にループの外側の点を初期値とした場合にループの外側から吸い込まれる図を出力せよ．</p>
+</div>
+<p><span class="math notranslate nohighlight">\(x\)</span>と<span class="math notranslate nohighlight">\(z\)</span>の時間変化</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="mi">3</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;x(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">t</span><span class="p">,</span> <span class="n">Z</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s2">&quot;z(t)&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">&quot;t&quot;</span><span class="p">);</span> <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">&quot;濃度&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">();</span> <span class="n">plt</span><span class="o">.</span><span class="n">grid</span><span class="p">(</span><span class="kc">True</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.3</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">&quot;Keener–Tysonモデルの濃度振動&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;8_kt_t-xz_eps=</span><span class="si">{</span><span class="n">eps</span><span class="si">}</span><span class="s2">_q=</span><span class="si">{</span><span class="n">q</span><span class="si">}</span><span class="s2">_f=</span><span class="si">{</span><span class="n">f</span><span class="si">}</span><span class="s2">.png&quot;</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</div>
+<p>上記コードを実行すると次のような図が得られる．</p>
+<p><img alt="リミットサイクル" src="../_images/8_kt_t-xz_eps%3D0.01_q%3D0.01_f%3D0.8_x0%3D0.2_z0%3D0.2.png" /></p>
+<p>解の時間変化をプロットすると上の図のように周期的に振動していることが確認できる．
+この周期的な挙動が，解がリミットサイクル上を回転していることに対応している．</p>
+<section id="id3">
+<h3><span class="section-number">8.4.1. </span>課題<a class="headerlink" href="#id3" title="Link to this heading">#</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><span style="color:red"><strong>課題2</strong></span></p>
+<p>Keener–Tysonモデルでは<code class="docutils literal notranslate"><span class="pre">eps</span></code>，<code class="docutils literal notranslate"><span class="pre">q</span></code>，<code class="docutils literal notranslate"><span class="pre">r</span></code>の3つのパラメタが存在するが，このパラメタの値を変化させることで解の軌道がどのように変化するかを確かめるために，次の3つの問いに答えよ．</p>
+<ol class="arabic simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">eps</span></code>の値を<span class="math notranslate nohighlight">\(0.01\)</span>から<span class="math notranslate nohighlight">\(0.1, 1, 10\)</span>と変化させたときの軌道と時間変化がどのように変化するか，図と共に述べよ．ただし，<code class="docutils literal notranslate"><span class="pre">q=0.01,</span> <span class="pre">r=0.8</span></code>とする．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">q</span></code>の値を<span class="math notranslate nohighlight">\(0.03, 0.05, 0.061, 0.07\)</span>と変化させたときの軌道と時間変化がどのように変化するか，図と共に述べよ．ただし，<code class="docutils literal notranslate"><span class="pre">eps=0.01,</span> <span class="pre">r=0.8</span></code>とする．</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">r</span></code>の値を自由に変化させ，リミットサイクルが得られる値の範囲を調べよ．<code class="docutils literal notranslate"><span class="pre">r</span></code>の値を動かすのは小数点以下第一位までで良い．ただし，<code class="docutils literal notranslate"><span class="pre">eps=0.01,</span> <span class="pre">q=0.01</span></code>とする．</p></li>
+</ol>
+</div>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id4">
+<h2><span class="section-number">8.5. </span>応用<a class="headerlink" href="#id4" title="Link to this heading">#</a></h2>
+<section id="id5">
+<h3><span class="section-number">8.5.1. </span>自律振動<a class="headerlink" href="#id5" title="Link to this heading">#</a></h3>
+<p>外部入力なしでも周期運動が起きる
+→ 生体リズム（心臓鼓動，概日リズム）の研究モデル</p>
+</section>
+<section id="id6">
+<h3><span class="section-number">8.5.2. </span>化学パターン形成<a class="headerlink" href="#id6" title="Link to this heading">#</a></h3>
+<p>BZ反応に空間的な構造も含めて考えると</p>
+<ul class="simple">
+<li><p>同心円波</p></li>
+<li><p>スパイラル波</p></li>
+<li><p>迷路状パターン
+が自発的に形成される．</p></li>
+</ul>
+<p><a class="reference external" href="https://www.isc.meiji.ac.jp/~suematsu/research/pattern.html">「研究内容」末松　J.　信彦</a></p>
+</section>
+<section id="id7">
+<h3><span class="section-number">8.5.3. </span>脳科学・計算科学への応用<a class="headerlink" href="#id7" title="Link to this heading">#</a></h3>
+<ul class="simple">
+<li><p>神経活動のモデル化</p></li>
+<li><p>パターン形成と自己組織化の概念学習</p></li>
+<li><p>ケミカルコンピューティング（cf.<a class="reference external" href="https://takinoue-lab.jp/research/research-computing/">「物質を使った新しい計算原理に関する情報科学 (Physical and Chemical Computing &amp; Molecular Intelligence)」瀧ノ上研究室</a>）</p></li>
+</ul>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id8">
+<h2><span class="section-number">8.6. </span>まとめ<a class="headerlink" href="#id8" title="Link to this heading">#</a></h2>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>項目</p></th>
+<th class="head"><p>内容</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>BZ反応</p></td>
+<td><p>化学的非平衡系で生じる自律振動</p></td>
+</tr>
+<tr class="row-odd"><td><p>Oregonator</p></td>
+<td><p>BZ反応を説明する簡略モデル</p></td>
+</tr>
+<tr class="row-even"><td><p>リミットサイクル</p></td>
+<td><p>吸引性を持つ周期軌道</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>パラメタ<span class="math notranslate nohighlight">\(q\)</span>と<span class="math notranslate nohighlight">\(f\)</span>の値によっては安定なリミットサイクルが消滅することがある．パラメタ<span class="math notranslate nohighlight">\(q\)</span>と<span class="math notranslate nohighlight">\(f\)</span>を変化させ，安定なリミットサイクルが消滅・出現する様子を調べよ．
+3. （発展）数値的に周期 (T) を推定せよ（ゼロクロス法など）。</p>
+</section>
+</section>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            name: "python3",
+            path: "./contents"
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="7_bistable.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title"><span class="section-number">7. </span>2種競争モデルと双安定性</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="9_SIR_model.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">next</p>
+        <p class="prev-next-title"><span class="section-number">9. </span>感染症モデル（SIRモデル）</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#bz-belousovzhabotinsky-reaction">8.1. BZ反応（Belousov–Zhabotinsky reaction）</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id1">8.1.1. 実験動画</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id2">8.1.2. 代表的なモデル</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fkn">8.2. FKNモデル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#oregonator">8.3. Oregonatorモデル</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#keenertyson">8.4. Keener–Tysonモデル</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id3">8.4.1. 課題</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id4">8.5. 応用</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id5">8.5.1. 自律振動</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id6">8.5.2. 化学パターン形成</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#id7">8.5.3. 脳科学・計算科学への応用</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#id8">8.6. まとめ</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Keiichiro Kagawa
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=dfe6caa3a7d634c4db9b"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=dfe6caa3a7d634c4db9b"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

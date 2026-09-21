@@ -44,13 +44,33 @@ jobs:
           BASE_URL: /${{ github.event.repository.name }}/2026/AppliedProgrammingI
         run: myst build --html --ci
 
+      - name: Build 2026 Freshman Seminar I
+        working-directory: 2026/FreshmanSeminarI
+        env:
+          BASE_URL: /${{ github.event.repository.name }}/2026/FreshmanSeminarI
+        run: myst build --html --ci
+
+      - name: Build 2026 Game Theory
+        working-directory: 2026/GameTheory
+        env:
+          BASE_URL: /${{ github.event.repository.name }}/2026/GameTheory
+        run: myst build --html --ci
+
       - name: Assemble archive site
         run: |
           mkdir -p public/2025/FreshmanSeminarII
+          mkdir -p public/2025/IntroToComputers
+          mkdir -p public/2025/MathematicalStudies
           mkdir -p public/2026/AppliedProgrammingI
+          mkdir -p public/2026/FreshmanSeminarI
+          mkdir -p public/2026/GameTheory
           cp index.html public/index.html
           cp -R 2025/FreshmanSeminarII/_build/html/. public/2025/FreshmanSeminarII/
+          cp -R 2025/IntroToComputers/_build/html/. public/2025/IntroToComputers/
+          cp -R 2025/MathematicalStudies/_build/html/. public/2025/MathematicalStudies/
           cp -R 2026/AppliedProgrammingI/_build/html/. public/2026/AppliedProgrammingI/
+          cp -R 2026/FreshmanSeminarI/_build/html/. public/2026/FreshmanSeminarI/
+          cp -R 2026/GameTheory/_build/html/. public/2026/GameTheory/
 
       - name: Upload GitHub Pages artifact
         uses: actions/upload-pages-artifact@v3

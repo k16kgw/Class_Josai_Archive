@@ -1,0 +1,51 @@
+version: 1
+project:
+  title: ゲーム理論
+  description: 城西大学理学部情報数理学科2年生対象科目
+  authors:
+    - name: Keiichiro Kagawa
+    - email: kkagawa@josai.ac.jp
+    # - affiliation: 3号棟3階3306
+  # 公開ページからGitHub・編集・ソース表示へのリンクを出さない
+  # github: https://github.com/k16kgw/Class_Josai_GameTheory
+  edit_url: null
+  source_url: null
+  # 既定のMarkdownソースのダウンロードを無効にする
+  downloads: []
+  bibliography:
+    - references.bib
+  exports:
+    - format: pdf
+      template: plain_latex_book
+      output: exports/book.pdf
+  numbering:
+    # title: true
+    headings: true
+    # あるいは必要なレベルだけ
+    # heading_1: false
+    # heading_2: true
+    # heading_3: true
+    # heading_4: true
+    # heading_5: true
+    # heading_6: true
+  toc:
+    - file: intro.md
+    - file: contents/1_guidance.md
+    - file: contents/2_expected_utility.md
+    - file: contents/3_strategic_form_game.md
+    - file: contents/4_Nash_equilibrium.md
+    - file: contents/5_mixed_strategy.md
+    - file: contents/6_prisoners_dilemma.md
+    # - file: contents/7_mid_test.md
+    - file: contents/8_extensive_form_game.md
+    - file: contents/9_repeated_game.md
+    - file: contents/10_incomplete_information.md
+    - file: contents/11_barganing_game.md
+    - file: contents/12_core.md
+    - file: contents/13_evolutionary_game.md
+
+site:
+  options:
+    folders: true
+    style: styles/site.css
+  template: book-theme

@@ -1,0 +1,71 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="900" viewBox="0 0 1600 900">
+  <defs>
+    <marker id="arrow-blue" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#2563eb"/>
+    </marker>
+    <marker id="arrow-green" markerWidth="14" markerHeight="14" refX="10" refY="5" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#059669"/>
+    </marker>
+    <style>
+      .title { font: 700 46px "YuGothic"; fill: #111827; }
+      .heading { font: 700 30px "YuGothic"; fill: #111827; }
+      .body { font: 500 24px "YuGothic"; fill: #1f2937; }
+      .small { font: 500 20px "YuGothic"; fill: #374151; }
+      .code { font: 700 34px "Menlo"; fill: #111827; }
+      .code-small { font: 700 28px "Menlo"; fill: #111827; }
+      .label { font: 700 22px "YuGothic"; fill: #ffffff; }
+      .muted { font: 500 20px "YuGothic"; fill: #6b7280; }
+      .box { fill: #ffffff; stroke: #cbd5e1; stroke-width: 3; rx: 24; }
+      .blue { fill: #eff6ff; stroke: #60a5fa; stroke-width: 4; rx: 24; }
+      .green { fill: #ecfdf5; stroke: #34d399; stroke-width: 4; rx: 24; }
+      .amber { fill: #fffbeb; stroke: #f59e0b; stroke-width: 4; rx: 24; }
+      .rose { fill: #fff1f2; stroke: #fb7185; stroke-width: 4; rx: 24; }
+      .slate { fill: #f8fafc; stroke: #94a3b8; stroke-width: 4; rx: 24; }
+    </style>
+  </defs>
+
+  <rect width="1600" height="900" fill="#f8fafc"/>
+  <text class="title" x="80" y="90">Pythonの基本用語の対応</text>
+  <text class="body" x="82" y="134">コードを書くときは，「どの部分が名前で，どの部分が値か」を分けて読む。</text>
+
+  <rect class="box" x="80" y="180" width="1440" height="130"/>
+  <text class="heading" x="120" y="230">Pythonの文（statement）</text>
+  <text class="code" x="120" y="280">score = 80</text>
+  <rect x="116" y="192" width="210" height="38" rx="19" fill="#2563eb"/>
+  <text class="label" x="143" y="218">実行する命令</text>
+
+  <rect class="blue" x="120" y="370" width="330" height="170"/>
+  <text class="heading" x="155" y="420">変数名</text>
+  <text class="code" x="155" y="475">score</text>
+  <text class="small" x="155" y="515">オブジェクトを参照するための名前</text>
+
+  <rect class="slate" x="555" y="380" width="230" height="145"/>
+  <text class="heading" x="595" y="430">代入演算子</text>
+  <text class="code" x="655" y="485">=</text>
+
+  <rect class="amber" x="880" y="370" width="280" height="170"/>
+  <text class="heading" x="920" y="420">式</text>
+  <text class="code" x="920" y="475">80</text>
+  <text class="small" x="920" y="515">評価すると値になる</text>
+
+  <path d="M450 455 C510 455 505 455 555 455" fill="none" stroke="#2563eb" stroke-width="6" marker-end="url(#arrow-blue)"/>
+  <path d="M785 455 C825 455 840 455 880 455" fill="none" stroke="#2563eb" stroke-width="6" marker-end="url(#arrow-blue)"/>
+
+  <rect class="green" x="1045" y="600" width="395" height="190"/>
+  <text class="heading" x="1085" y="650">オブジェクト</text>
+  <text class="body" x="1085" y="700">値：80</text>
+  <text class="body" x="1085" y="738">型：int</text>
+  <text class="body" x="1085" y="776">識別値：実行中に区別する番号</text>
+
+  <path d="M1020 540 C1080 565 1110 580 1155 600" fill="none" stroke="#059669" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <path d="M285 540 C400 680 760 700 1045 690" fill="none" stroke="#059669" stroke-width="6" marker-end="url(#arrow-green)"/>
+  <text class="small" x="490" y="675">代入後，変数名はオブジェクトを参照する</text>
+
+  <rect class="rose" x="120" y="630" width="330" height="150"/>
+  <text class="heading" x="155" y="680">出力</text>
+  <text class="code-small" x="155" y="730">print(score)</text>
+  <text class="body" x="155" y="768">表示される値：80</text>
+
+  <rect class="box" x="515" y="735" width="405" height="65"/>
+  <text class="small" x="540" y="777">コメントは # から行末まで。実行結果には影響しない。</text>
+</svg>

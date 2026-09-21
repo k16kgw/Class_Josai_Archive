@@ -1,0 +1,247 @@
+% !TEX program = lualatex
+\documentclass[10pt,a4paper]{ltjsarticle}
+
+\usepackage[top=10mm,bottom=10mm,left=16mm,right=16mm,footskip=3mm]{geometry}
+\usepackage{amsmath,amssymb,array}
+\usepackage{enumitem}
+\usepackage{xcolor}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.15em}
+\setlength{\abovedisplayskip}{0.25em}
+\setlength{\belowdisplayskip}{0.25em}
+\setlength{\fboxsep}{1.5mm}
+\renewcommand{\arraystretch}{1.25}
+\setlist[enumerate]{label=(\arabic*),leftmargin=*,itemsep=0.05em,topsep=0.1em}
+
+% 解答例の表示切り替え：0=OFF（問題用），1=ON（解答例入り）
+\providecommand{\showanswers}{1}
+
+\newcommand{\points}[1]{\hfill{\small（#1点）}}
+\newcommand{\question}[2]{%
+  \par\vspace{0.45em}
+  {\large\bfseries #1}\points{#2}\par\vspace{0.15em}
+}
+\newcommand{\answerbox}[2]{%
+  \par\vspace{0.25em}
+  \noindent\fbox{%
+    \begin{minipage}[t][#1][t]{0.975\linewidth}
+      {\small\textbf{解答欄}}
+      \ifnum\showanswers=1
+        \par\vspace{0.2em}
+        {\color{red}#2}
+      \fi
+    \end{minipage}%
+  }%
+  \par\vspace{0.25em}
+}
+
+\begin{document}
+
+\begin{center}
+  {\LARGE 2026年度 前期 ゲーム理論 中間試験}\\[-0.2em]
+  {担当教員：香川渓一郎}
+\end{center}
+
+\begin{tabular}{|p{0.35\linewidth}|p{0.35\linewidth}|p{0.20\linewidth}|}
+  \hline
+  学籍番号 & 氏名 & 得点（40点満点） \\
+  \hline
+   & & \\
+   & & \\
+  \hline
+\end{tabular}
+
+\vspace{0.3em}
+問題は全6問4ページある．落丁があった場合は直ちに試験官に知らせること．\\
+注1：誤答であっても途中式や考え方によって加点することがある．\\%必要に応じて，最適応答や利得の比較を明示すること．
+注2：解答欄が足りない場合は裏面に解答しても良い．
+
+\question{第1問：期待効用の計算}{3}
+くじ $L=(0.5,100;\ 0.5,0)$ と，確実に40を得るくじ $C=(1,40)$ を考える．効用関数を $u(x)=\sqrt{x}$ とする．
+\begin{enumerate}
+  \item $L$ と $C$ の期待値をそれぞれ求めよ．
+  \item $L$ と $C$ の期待効用のうち，どちらの期待効用が大きいかを述べよ．
+  \item この効用関数をもつプレイヤーは「リスク回避型」「リスク中立型」「リスク愛好型」のどれに分類されるか．
+\end{enumerate}
+\answerbox{41mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item $E[L]=0.5\cdot100+0.5\cdot0=50$，$E[C]=40$．期待値で比較すれば $L$ を選ぶ．
+  \item $E_u(L)=0.5\sqrt{100}+0.5\sqrt{0}=5$，$E_u(C)=\sqrt{40}\simeq6.32$．
+  \item $u(x)=\sqrt{x}$は凹関数であるからリスク回避型である．
+\end{enumerate}
+}
+
+\question{第2問：タカ・ハトゲーム}{4}
+次の利得行列で定義される2人ゲームはタカ・ハトゲームと呼ばれており，生物学におけるナワバリ争いを巡る動物行動の分析に用いられている．
+ナワバリの資源を巡った他の動物との競争においては，自分が傷ついてでも闘争しようとする「タカ戦略」と自分が傷つくまでは闘争しないようにする「ハト戦略」がある．
+プレイヤー1と2の戦略の集合は$\{\text{ハト},\text{タカ}\}$とする．
+\[
+\begin{array}{c|cc}
+1＼2 & \text{ハト} & \text{タカ} \\ \hline
+\text{ハト} & (2,2) & (1,3) \\
+\text{タカ} & (3,1) & (0,0)
+\end{array}
+\]
+\begin{enumerate}
+  \item 各プレイヤーの最適応答をすべて求めよ．
+  \item 純戦略ナッシュ均衡をすべて求めよ．存在しない場合は「ない」と答えよ．
+\end{enumerate}
+\answerbox{78mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item プレイヤー1の最適応答は，$BR_1(\text{ハト})=\{\text{タカ}\}$，$BR_1(\text{タカ})=\{\text{ハト}\}$である．
+  プレイヤー2の最適応答は，$BR_2(\text{ハト})=\{\text{タカ}\}$，$BR_2(\text{タカ})=\{\text{ハト}\}$である．
+  \item 互いに最適応答になっている $(\text{ハト},\text{タカ})$ と $(\text{タカ},\text{ハト})$ が純戦略ナッシュ均衡である．
+\end{enumerate}
+}
+
+\newpage
+
+\question{第3問：混合戦略ナッシュ均衡}{4}
+次の2人ゲームを考える．
+\[
+\begin{array}{c|cc}
+ & L & R \\ \hline
+U & (3,2) & (1,0) \\
+D & (1,5) & (-1,7)
+\end{array}
+\]
+プレイヤー1が $U$ を選ぶ確率を $p$，プレイヤー2が $L$ を選ぶ確率を $q$ とする．
+\begin{enumerate}
+  \item 純戦略ナッシュ均衡をすべて求めよ．
+  \item 両プレイヤーが2つの純戦略を正の確率で混ぜる混合戦略ナッシュ均衡を求めよ．ただし$U$を選択する確率を$p$，$L$を選択する確率を$q$とせよ．
+\end{enumerate}
+\answerbox{52mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item 最適応答は $BR_1(L)=\{U\}$，$BR_1(R)=\{U\}$，$BR_2(U)=\{L\}$，$BR_2(D)=\{R\}$ である．
+  互いに最適応答になっている戦略プロフィールは $(U,L)$ であるから，純戦略ナッシュ均衡は $(U,L)$ である．
+  \item プレイヤー1の期待利得は，$U$ を選ぶと $2q$，$D$ を選ぶと $1-q$ なので，完全混合では $2q=1-q$ より $q=1/3$．
+  プレイヤー2の期待利得は，$L$ を選ぶと $p$，$R$ を選ぶと $2(1-p)$ なので，完全混合では $p=2(1-p)$ より $p=2/3$．
+  したがって，混合戦略ナッシュ均衡は $\sigma_1=(2/3,1/3)$，$\sigma_2=(1/3,2/3)$ である．
+\end{enumerate}
+}
+
+\question{第4問：囚人のジレンマとパレート最適性}{7}
+次のゲームを考える．各プレイヤーの純戦略は $C$（協力）と $D$（裏切り）である．
+\[
+\begin{array}{c|cc}
+ & C & D \\ \hline
+C & (4,4) & (0,5) \\
+D & (5,0) & (1,1)
+\end{array}
+\]
+\begin{enumerate}
+  \item このゲームが囚人のジレンマの構造をもつことを，$T,R,P,S$ の値と不等式を用いて説明せよ．
+  \item 各プレイヤーの支配戦略を求め，純戦略ナッシュ均衡を答えよ．
+  \item パレート優位とパレート最適の意味を説明したうえで，このゲームでパレート最適な戦略プロフィールをすべて求めよ．
+  \item ナッシュ均衡とパレート最適性の違いが，このゲームのどこに表れているかを説明せよ．
+\end{enumerate}
+\answerbox{56mm}{%
+相手が $C$ のとき $D$ を選べば5，互いに $C$ なら4，互いに $D$ なら1，相手が $D$ のとき $C$ を選べば0である．
+よって $T=5$，$R=4$，$P=1$，$S=0$ であり，$T>R>P>S$ が成り立つ．
+各プレイヤーにとって $D$ が支配戦略であり，純戦略ナッシュ均衡は $(D,D)$ である．
+パレート優位とは，全員が弱く改善し，少なくとも1人が厳密に改善することである．パレート最適とは，それよりパレート優位な戦略プロフィールが存在しないことである．
+$(C,C)$ は $(D,D)$ よりパレート優位なので，$(D,D)$ はパレート最適ではない．パレート最適な戦略プロフィールは $(C,C)$，$(C,D)$，$(D,C)$ である．
+ナッシュ均衡は個人の最適応答の組であり，パレート最適性は社会的な改善可能性を見る基準であるため，両者は一致するとは限らない．
+}
+
+\newpage
+
+\question{第5問：サポートを仮定した混合戦略の確認}{8}
+次のゲームを考える．
+\[
+\begin{array}{c|ccc}
+1\backslash 2 & L & C & R \\ \hline
+U & (2,1) & (0,0) & (1,2)\\
+D & (0,2) & (2,1) & (1,0)
+\end{array}
+\]
+プレイヤー1は $U,D$ をともに正の確率で混ぜるとする．プレイヤー2は $L,C$ のみを正の確率で混ぜ，$R$ は選ばないと仮定する．プレイヤー1が $U$ を確率 $p$，プレイヤー2が $L$ を確率 $q$，$C$ を確率 $1-q$ で選ぶとする．
+\begin{enumerate}
+  \item プレイヤー1を無差別にする $q$ を求めよ．
+  \item プレイヤー2を $L,C$ の間で無差別にする $p$ を求めよ．
+  \item プレイヤー2が $R$ に逸脱しないか確認せよ．
+  \item このサポートに基づく混合戦略ナッシュ均衡が存在するか答えよ．
+\end{enumerate}
+\answerbox{145mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item プレイヤー1が $U$ を選ぶ期待利得は $2q$，$D$ を選ぶ期待利得は $2(1-q)$ である．無差別条件は
+  \[
+    2q=2(1-q)
+  \]
+  なので，$q=1/2$ である．
+  \item プレイヤー2が $L$ を選ぶ期待利得は
+  \[
+    p\cdot1+(1-p)\cdot2=2-p
+  \]
+  であり，$C$ を選ぶ期待利得は
+  \[
+    p\cdot0+(1-p)\cdot1=1-p
+  \]
+  である．$L$ と $C$ の無差別条件は $2-p=1-p$ となり，これは $2=1$ を意味するため成り立たない．
+  \item 任意の $p$ について $2-p>1-p$ なので，プレイヤー2は $C$ より $L$ を選ぶ方がよい．したがって，$L,C$ をともに正の確率で混ぜる条件が満たされない．
+  \item よって，このサポートに基づく混合戦略ナッシュ均衡は存在しない．
+\end{enumerate}
+}
+
+\newpage
+
+\question{第6問：クールノー寡占市場}{11}
+2企業クールノー寡占市場を考える．市場全体の供給量を $Q=q_1+q_2$ とし，逆需要関数を
+\[
+  p(Q)=12-Q
+\]
+とする．また，企業1・2の費用関数をそれぞれ
+\[
+  c_1(q_1)=2q_1,\qquad c_2(q_2)=2q_2
+\]
+とする．ただし，内点解を仮定してよい．
+\begin{enumerate}
+  \item 企業1の利得関数 $f_1(q_1,q_2)$ と企業2の利得関数 $f_2(q_1,q_2)$ を求めよ．
+  \item 企業1と企業2の最適応答関数をそれぞれ求めよ．
+  \item クールノー均衡 $(q_1^\ast,q_2^\ast)$ を求めよ．
+  \item 均衡における市場価格 $p(Q^\ast)$ と各企業の利潤を求めよ．
+\end{enumerate}
+\answerbox{165mm}{%
+\begin{enumerate}[label=(\arabic*)]
+  \item 市場価格は $p(Q)=12-q_1-q_2$ である．したがって
+  \[
+    f_1(q_1,q_2)=(12-q_1-q_2)q_1-2q_1
+    =10q_1-q_1^2-q_1q_2,
+  \]
+  \[
+    f_2(q_1,q_2)=(12-q_1-q_2)q_2-2q_2
+    =10q_2-q_2^2-q_1q_2.
+  \]
+  \item 企業1について，一階条件は
+  \[
+    \frac{\partial f_1}{\partial q_1}=10-2q_1-q_2=0
+  \]
+  なので，$BR_1(q_2)=(10-q_2)/2$．同様に，企業2について
+  \[
+    \frac{\partial f_2}{\partial q_2}=10-2q_2-q_1=0
+  \]
+  より，$BR_2(q_1)=(10-q_1)/2$．
+  \item クールノー均衡では $q_1^\ast=BR_1(q_2^\ast)$，$q_2^\ast=BR_2(q_1^\ast)$ である．対称性より $q_1^\ast=q_2^\ast=q^\ast$ とおくと，
+  \[
+    q^\ast=\frac{10-q^\ast}{2}
+  \]
+  だから，$q^\ast=10/3$．よって
+  \[
+    (q_1^\ast,q_2^\ast)=\left(\frac{10}{3},\frac{10}{3}\right).
+  \]
+  \item $Q^\ast=20/3$ なので，
+  \[
+    p(Q^\ast)=12-\frac{20}{3}=\frac{16}{3}.
+  \]
+  各企業の利潤は
+  \[
+    f_i(q_1^\ast,q_2^\ast)
+    =\left(\frac{16}{3}-2\right)\frac{10}{3}
+    =\frac{100}{9}
+  \]
+  である．
+\end{enumerate}
+}
+
+\end{document}

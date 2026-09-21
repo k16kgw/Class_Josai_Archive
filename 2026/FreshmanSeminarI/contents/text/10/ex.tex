@@ -1,0 +1,91 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[uplatex,dvipdfmx,a4paper,12pt]{jsarticle}
+\usepackage{amsmath,amssymb}
+\usepackage[dvipdfmx]{graphicx}
+
+\title{TeXによる文書作成}
+\author{2025014 香川渓一郎}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{はじめに}
+
+本稿では，TeXを用いて数式を含む文書を作成する．
+
+\section{数式}
+
+2次関数 $f(x)=x^2+2x+1$ を考える．
+
+\section{数式の練習}
+
+自然数 $n$ に対して，$1$ から $n$ までの整数の和は次の式で表される．
+$$
+  \sum_{i=1}^{n} i=\frac{n(n+1)}{2}
+$$
+
+行列 $A$ を次のように定める．
+$$
+  A=
+  \begin{pmatrix}
+    1 & 2 \\
+    3 & 4
+  \end{pmatrix}
+$$
+
+\section{画像の表示}
+
+図\ref{fig:tex-flow}に，TeXソースからPDFが作られるまでの流れを示す．
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics[width=0.7\linewidth]{sample.png}
+  \caption{TeX文書ができるまで}
+  \label{fig:tex-flow}
+\end{figure}
+
+\clearpage
+\section{課題内容}
+
+実数 $x$ に対して，2次関数 $f(x)$ を考える．
+
+\subsection{関数}
+
+関数 $f(x)$ を次のように定める．
+\begin{equation}
+  f(x)=e^{x^2}+\frac{x}{1+x^2}
+  \label{eq:quadratic}
+\end{equation}
+式\eqref{eq:quadratic}は，頂点が $(-1,0)$ の放物線を表す．
+
+また，三角関数と対数関数の例を次に示す．
+\begin{align}
+  g(x)&=\sin x+\cos x, \\
+  h(x)&=\log x.
+\end{align}
+
+\subsection{行列}
+
+行列 $A$ とベクトル $\boldsymbol{x}$ を次のように定める．
+\[
+  A=
+  \begin{pmatrix}
+    a_{11} & a_{12} & a_{13} \\
+    a_{21} & a_{22} & a_{23} \\
+    a_{31} & a_{32} & a_{33} 
+  \end{pmatrix},
+  \qquad
+  \boldsymbol{x}=
+  \begin{pmatrix}
+    x_1 \\
+    x_2
+  \end{pmatrix}.
+\]
+
+\section{おわりに}
+
+TeXでは，文章と命令を組み合わせて文書を作成する．
+
+\end{document}

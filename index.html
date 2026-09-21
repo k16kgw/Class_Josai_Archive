@@ -39,6 +39,10 @@
         padding-top: 24px;
       }
 
+      section + section {
+        margin-top: 32px;
+      }
+
       h2 {
         margin: 0 0 16px;
         font-size: 1.25rem;
@@ -63,6 +67,12 @@
         color: #fff;
         background: #1769aa;
       }
+
+      .courses {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
     </style>
   </head>
   <body>
@@ -71,11 +81,19 @@
       <p>講義ノートを年度・科目別に公開しています。</p>
       <section aria-labelledby="year-2025">
         <h2 id="year-2025">2025年度</h2>
-        <a href="./2025/FreshmanSeminarII/">フレッシュマンセミナーII</a>
+        <div class="courses">
+          <a href="./2025/FreshmanSeminarII/">フレッシュマンセミナーII</a>
+          <a href="./2025/IntroToComputers/">計算機入門I</a>
+          <a href="./2025/MathematicalStudies/">数学研究I・II</a>
+        </div>
       </section>
       <section aria-labelledby="year-2026">
         <h2 id="year-2026">2026年度</h2>
-        <a href="./2026/AppliedProgrammingI/">応用プログラミングI</a>
+        <div class="courses">
+          <a href="./2026/AppliedProgrammingI/">応用プログラミングI</a>
+          <a href="./2026/FreshmanSeminarI/">フレッシュマンセミナーI</a>
+          <a href="./2026/GameTheory/">ゲーム理論</a>
+        </div>
       </section>
     </main>
   </body>
